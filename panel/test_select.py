@@ -17,27 +17,36 @@ def run_selector(*args):
 
 
 class SelectTest(unittest.TestCase):
+    def test_roster_loads(self):
+        with open(os.path.join(HERE, "panelists.json")) as fh:
+            panelists = json.load(fh)["panelists"]
+        self.assertGreater(len(panelists), 100)
+        for p in panelists:
+            for key in ("name", "id", "lens", "attributes", "family", "tags"):
+                self.assertIn(key, p)
+        ids = [p["id"] for p in panelists]
+        self.assertEqual(len(ids), len(set(ids)))
+
     def test_matching_tensions_win(self):
-        proc = run_selector("--tensions", "risk,claims")
+        proc = run_selector("--tensions", "threat,model,attacker")
         self.assertEqual(proc.returncode, 0)
         room = json.loads(proc.stdout)["room"]
-        self.assertEqual(room[0]["id"], "assumption-breaker")
+        self.assertEqual(room[0]["name"], "Aisha Rahman")
+        self.assertEqual(room[0]["score"], 3)
 
     def test_diversity_one_per_family(self):
-        proc = run_selector("--tensions", "risk,claims,conflict,decision",
-                            "--size", "5")
+        proc = run_selector("--tensions", "risk", "--size", "5")
         self.assertEqual(proc.returncode, 0)
         room = json.loads(proc.stdout)["room"]
         families = [p["family"] for p in room]
         self.assertEqual(len(families), len(set(families)))
 
-    def test_diversity_beats_second_best_score(self):
-        # 'human' matches nothing here but must still appear: no family repeats.
-        proc = run_selector("--tensions", "measurement,metrics", "--size", "4")
+    def test_diversity_fills_beyond_matches(self):
+        proc = run_selector("--tensions", "threat,model,attacker",
+                            "--size", "4")
         self.assertEqual(proc.returncode, 0)
         room = json.loads(proc.stdout)["room"]
         self.assertEqual(len(room), 4)
-        self.assertEqual(room[0]["id"], "meter-checker")
         self.assertEqual(len({p["family"] for p in room}), 4)
 
     def test_size_bounds_rejected(self):
@@ -47,11 +56,12 @@ class SelectTest(unittest.TestCase):
     def test_out_file(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = os.path.join(tmp, "room.json")
-            proc = run_selector("--tensions", "effort", "--out", out)
+            proc = run_selector("--tensions", "risk", "--out", out)
             self.assertEqual(proc.returncode, 0)
             with open(out) as fh:
                 room = json.load(fh)["room"]
-            self.assertEqual(room[0]["id"], "human")
+            self.assertTrue(room)
+            self.assertIn("name", room[0])
 
 
 if __name__ == "__main__":

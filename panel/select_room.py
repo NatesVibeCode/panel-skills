@@ -75,7 +75,7 @@ def main(argv=None) -> int:
     result = {
         "tensions": tensions,
         "room": [
-            {"id": p["id"], "family": p["family"],
+            {"name": p["name"], "id": p["id"], "family": p["family"],
              "lens": p["lens"], "score": score(tensions, p["tags"])}
             for p in room
         ],

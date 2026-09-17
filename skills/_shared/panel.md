@@ -8,10 +8,11 @@ judgment calls — the DAG does it (see
 
 ## What a panelist is
 
-Each entry has an id, a lens (the question it cannot stop asking),
+Each entry has a name, an id, a lens (the question it cannot stop asking),
 attributes (what it notices, how it argues, what it refuses to let slide), a
 family (exactly one of `clarity`, `risk`, `measure`, `incentives`, `human`),
-and tags (topics that match it).
+and tags (topics that match it). The roster holds 128 panelists, from
+general lenses to narrow specialists.
 
 ## How a room forms
 
