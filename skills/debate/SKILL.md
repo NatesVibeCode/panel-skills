@@ -5,6 +5,8 @@ description: Attack a claim from five sides in rounds until only what survives s
 
 # Debate
 
+**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/room.sh`.
+
 Put one claim in the room and let the panel try to break it. What survives,
 in smaller and harder form, is the outcome.
 

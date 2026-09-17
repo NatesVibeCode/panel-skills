@@ -5,6 +5,8 @@ description: Read back intent, check what was built against it, and give a verdi
 
 # Review
 
+**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/room.sh`.
+
 Work says it is done. The panel reads back what was asked, looks at what was
 built, and gives a verdict: holds, holds with gaps named, or fails. Soft
 passes are lies about ownership — a gap named is a gap ownable; a gap

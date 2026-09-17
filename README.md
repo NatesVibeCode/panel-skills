@@ -9,6 +9,13 @@ They are written for people first. Every record must be readable by a smart
 stranger in under a minute. No servers, no services, no accounts — the skills
 are Markdown files an agent reads and follows.
 
+## Requirements
+
+[skillflow](https://github.com/NatesVibeCode/skillflow) is required. Every
+skill runs on it: room selection, rounds, gates, and stoppage are all DAG
+nodes, not prose. Install it first, then run sessions with
+`panel/room.sh "tension1,tension2" <rounds> <session-dir>`.
+
 ## The skills
 
 - [debate](skills/debate/SKILL.md) — attack a claim from five sides until only the facing wall stands.

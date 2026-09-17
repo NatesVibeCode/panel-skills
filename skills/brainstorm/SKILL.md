@@ -5,6 +5,8 @@ description: Open the field of approaches with the panel before committing to on
 
 # Brainstorm
 
+**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/room.sh`.
+
 Generate the field before choosing the path. The panel produces approaches,
 then kills the weak ones — choosing happens elsewhere, after the field is
 visible.

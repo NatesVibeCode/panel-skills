@@ -5,6 +5,8 @@ description: Restate the problem in rounds until the shape of the work changes. 
 
 # Reframe
 
+**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/room.sh`.
+
 The work is stuck or swelling. Instead of pushing harder, restate the problem
 until a different shape of work appears — then check whether the new shape is
 smaller, kinder, or truer than the old one.
