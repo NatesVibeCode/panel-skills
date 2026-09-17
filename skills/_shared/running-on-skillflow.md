@@ -8,22 +8,18 @@ and approved the next round.
 
 ## The room-forming graph
 
+One command builds and runs the whole session:
+
 ```sh
-skillflow init
-skillflow add-node tensions --cmd "echo 'risk,measurement,human-cost' > tensions.txt"
-skillflow add-node select-room --cmd "python3 panel/select_room.py --tensions $(cat tensions.txt) --out room.json"
-skillflow add-node gate-1 --cmd 'read -p "Approve room? [y/N] " a; [ "$a" = "y" ]'
-skillflow add-node round-1 --cmd "collide over the question with room.json"
-skillflow add-edge tensions select-room
-skillflow add-edge select-room gate-1
-skillflow add-edge gate-1 round-1
-skillflow run
+panel/room.sh "risk,measurement,human-cost" 2 ./session1
 ```
 
-`panel/select_room.py` matches panelists to the tensions semantically and enforces
-diversity (at most one per family, three to five seats). New tensions from a
-round re-run the selector and re-form the room — add another
-select → gate → round chain per round.
+That builds the graph — tensions → select → gate → round, per round — and
+runs it. `panel/select_room.py` seats each room mechanically (semantic match,
+diversity enforced: at most one per family, three to five seats). Each gate
+stops until a person has collided, written the round record, and updated the
+tensions for the next round's selection. New tensions re-form the room every
+round.
 
 ## Rules
 

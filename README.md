@@ -21,8 +21,14 @@ Shared material lives in [skills/_shared](skills/_shared): the
 [recommended runner setup](skills/_shared/running-on-skillflow.md).
 
 Room selection is mechanical, not prose: [panel/panelists.json](panel/panelists.json)
-lists the panelists and [panel/select_room.py](panel/select_room.py) matches
-them to the situation's tensions with enforced diversity (one per family).
+lists the 128 panelists, [panel/select_room.py](panel/select_room.py) matches
+them to the situation's tensions with enforced diversity (one per family),
+and [panel/room.sh](panel/room.sh) runs the whole session as a skillflow DAG:
+
+```sh
+panel/room.sh "risk,measurement" 2 ./session1
+```
+
 Tests: `cd panel && python -m unittest test_select`.
 
 ## Recommended runner: skillflow
