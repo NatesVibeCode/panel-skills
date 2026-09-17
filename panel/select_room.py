@@ -43,6 +43,13 @@ def stable_salt(pid: str, tensions: list) -> str:
     return hashlib.md5(blob.encode("utf-8")).hexdigest()
 
 
+def tag_tokens(panelist: dict) -> set:
+    out = set()
+    for tag in panelist["tags"]:
+        out |= tokens(tag)
+    return out
+
+
 def select(panelists: list, tensions: list, size: int,
            excluded: set | None = None) -> list:
     excluded = excluded or set()
@@ -52,15 +59,31 @@ def select(panelists: list, tensions: list, size: int,
         scored,
         key=lambda item: (-item[0], stable_salt(item[1]["id"], tensions)),
     )
-    room, used_families = [], set()
+    # Two passes: strict (no near-duplicate tag sets), then relaxed to fill.
+    room, used_families, seated_tags = [], set(), set()
+    for candidate in _pass(ranked, size, used_families, seated_tags,
+                           strict=True):
+        room.append(candidate)
+    for candidate in _pass(ranked, size - len(room), used_families,
+                           seated_tags, strict=False):
+        room.append(candidate)
+    return room
+
+
+def _pass(ranked, size, used_families, seated_tags, strict):
+    picked = []
     for _, candidate in ranked:
-        if len(room) >= size:
+        if len(picked) >= size:
             break
         if candidate["family"] in used_families:
             continue
-        room.append(candidate)
+        mine = tag_tokens(candidate)
+        if strict and len(mine & seated_tags) >= 2:
+            continue
+        picked.append(candidate)
         used_families.add(candidate["family"])
-    return room
+        seated_tags |= mine
+    return picked
 
 
 def load_excluded(paths: list) -> set:

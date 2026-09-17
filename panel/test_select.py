@@ -88,6 +88,27 @@ class SelectTest(unittest.TestCase):
                             "--exclude", os.path.join(self.tmp.name, "nope.json"))
         self.assertEqual(proc.returncode, 2)
 
+    def test_near_duplicates_not_seated_together(self):
+        sys.path.insert(0, HERE)
+        from select_room import select
+        try:
+            roster = [
+                {"id": "a", "family": "risk", "lens": "", "attributes": [],
+                 "tags": ["threat", "model", "attacker"]},
+                {"id": "b", "family": "human", "lens": "", "attributes": [],
+                 "tags": ["threat", "model", "stranger"]},
+                {"id": "c", "family": "clarity", "lens": "", "attributes": [],
+                 "tags": ["docs", "wording"]},
+                {"id": "d", "family": "measure", "lens": "", "attributes": [],
+                 "tags": ["metrics", "proof"]},
+            ]
+            room = select(roster, ["threat", "model"], 3)
+            ids = [p["id"] for p in room]
+            self.assertIn("a", ids)
+            self.assertNotIn("b", ids)
+        finally:
+            sys.path.remove(HERE)
+
     def test_diversity_one_per_family(self):
         proc = run_selector(self.db, "--tensions", "risk", "--size", "5")
         self.assertEqual(proc.returncode, 0)

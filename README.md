@@ -16,6 +16,24 @@ skill runs on it: room selection, rounds, gates, and stoppage are all DAG
 nodes, not prose. Install it first, then run sessions with
 `panel/room.sh "tension1,tension2" <rounds> <session-dir>`.
 
+## Install
+
+```sh
+git clone https://github.com/NatesVibeCode/panel-skills.git
+cd panel-skills
+pip install git+https://github.com/NatesVibeCode/skillflow.git
+```
+
+Then either copy a skill directory (e.g. `skills/debate`) into your agent's
+skills folder, or install directly if your harness supports it:
+
+```sh
+muse skills install skills/debate
+```
+
+`panel/` stays with the repo checkout — `room.sh` resolves its own location,
+so run it from anywhere.
+
 ## The skills
 
 - [debate](skills/debate/SKILL.md) — attack a claim from five sides until only the facing wall stands.

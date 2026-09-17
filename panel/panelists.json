@@ -17,7 +17,7 @@
         "brainstorm",
         "review"
       ],
-      "family": "measure"
+      "family": "clarity"
     },
     {
       "name": "Harlan Voss",
@@ -53,7 +53,7 @@
         "debate",
         "brainstorm"
       ],
-      "family": "clarity"
+      "family": "risk"
     },
     {
       "name": "Gary Cobb",
@@ -93,7 +93,7 @@
         "permanent-brainstorm",
         "divergent"
       ],
-      "family": "human"
+      "family": "clarity"
     },
     {
       "name": "Laszlo Fern",
@@ -173,7 +173,7 @@
         "brainstorm",
         "llm-psychology"
       ],
-      "family": "incentives"
+      "family": "clarity"
     },
     {
       "name": "Calvin Moreau",
@@ -232,7 +232,7 @@
         "brainstorm",
         "review"
       ],
-      "family": "human"
+      "family": "clarity"
     },
     {
       "name": "Nadia Arora",
@@ -383,7 +383,7 @@
         "evidence",
         "weird_broadening"
       ],
-      "family": "risk"
+      "family": "measure"
     },
     {
       "name": "Elliot Marsh",
@@ -515,7 +515,7 @@
         "misdirection",
         "weird_broadening"
       ],
-      "family": "incentives"
+      "family": "risk"
     },
     {
       "name": "Uma Krishnan",
