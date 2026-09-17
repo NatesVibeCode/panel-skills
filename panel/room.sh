@@ -39,15 +39,17 @@ export SKILLFLOW_DB="$SESSION/skillflow.db"
 "${SF[@]}" add-node tensions --cmd "echo '$TENSIONS' > tensions.txt" >/dev/null
 "${SF[@]}" add-edge seed-panel tensions >/dev/null
 PREV="tensions"
+EXCLUDES=""
 i=1
 while [ "$i" -le "$ROUNDS" ]; do
   "${SF[@]}" add-node "select-$i" --cmd \
-    "python3 '$PANEL_DIR/select_room.py' --tensions \$(cat tensions.txt) --out room-$i.json" >/dev/null
+    "python3 '$PANEL_DIR/select_room.py' --tensions \"\$(cat tensions.txt)\" --out room-$i.json$EXCLUDES" >/dev/null
   "${SF[@]}" add-node "round-$i" --cmd \
     "read -p 'Round $i room in room-$i.json. Collide, write record-$i.md, update tensions.txt. Continue? [y/N] ' a; [ \"\$a\" = y ]" >/dev/null
   "${SF[@]}" add-edge "$PREV" "select-$i" >/dev/null
   "${SF[@]}" add-edge "select-$i" "round-$i" >/dev/null
   PREV="round-$i"
+  EXCLUDES="$EXCLUDES --exclude room-$i.json"
   i=$((i + 1))
 done
 

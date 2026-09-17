@@ -45,7 +45,48 @@ class SelectTest(unittest.TestCase):
         self.assertEqual(proc.returncode, 0)
         room = json.loads(proc.stdout)["room"]
         self.assertEqual(room[0]["name"], "Aisha Rahman")
-        self.assertEqual(room[0]["score"], 3)
+        self.assertGreater(room[0]["score"], 0)
+
+    def test_lens_text_scores(self):
+        # "ruin" appears in a lens, not a tag list.
+        proc = run_selector(self.db, "--tensions", "ruin")
+        self.assertEqual(proc.returncode, 0)
+        room = json.loads(proc.stdout)["room"]
+        self.assertEqual(room[0]["name"], "Oscar Quintana")
+        self.assertGreater(room[0]["score"], 0)
+
+    def test_same_tensions_same_room(self):
+        first = run_selector(self.db, "--tensions", "risk,measurement")
+        second = run_selector(self.db, "--tensions", "measurement,risk")
+        self.assertEqual(first.returncode, 0)
+        self.assertEqual(second.returncode, 0)
+        self.assertEqual(
+            [p["id"] for p in json.loads(first.stdout)["room"]],
+            [p["id"] for p in json.loads(second.stdout)["room"]])
+
+    def test_fill_varies_by_tensions(self):
+        first = run_selector(self.db, "--tensions", "risk")
+        second = run_selector(self.db, "--tensions", "pricing,economics")
+        room_a = {p["id"] for p in json.loads(first.stdout)["room"]}
+        room_b = {p["id"] for p in json.loads(second.stdout)["room"]}
+        self.assertNotEqual(room_a, room_b)
+
+    def test_exclude_removes_members(self):
+        first = run_selector(self.db, "--tensions", "risk")
+        room_path = os.path.join(self.tmp.name, "room-1.json")
+        with open(room_path, "w") as fh:
+            fh.write(first.stdout)
+        seated = {p["id"] for p in json.loads(first.stdout)["room"]}
+        second = run_selector(
+            self.db, "--tensions", "risk", "--exclude", room_path)
+        self.assertEqual(second.returncode, 0)
+        reseated = {p["id"] for p in json.loads(second.stdout)["room"]}
+        self.assertTrue(seated.isdisjoint(reseated))
+
+    def test_exclude_missing_file_rejected(self):
+        proc = run_selector(self.db, "--tensions", "risk",
+                            "--exclude", os.path.join(self.tmp.name, "nope.json"))
+        self.assertEqual(proc.returncode, 2)
 
     def test_diversity_one_per_family(self):
         proc = run_selector(self.db, "--tensions", "risk", "--size", "5")

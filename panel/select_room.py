@@ -10,8 +10,10 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import os
+import re
 import sqlite3
 import sys
 
@@ -19,28 +21,39 @@ MIN_SEATS, MAX_SEATS = 3, 5
 
 
 def tokens(text: str) -> set:
-    return {t for t in text.lower().replace("-", " ").replace("_", " ").split() if t}
+    return set(re.findall(r"[a-z0-9]+", text.lower()))
 
 
-def score(tensions: list, tags: list) -> int:
+def score(tensions: list, panelist: dict) -> int:
     tension_tokens = set()
     for t in tensions:
         tension_tokens |= tokens(t)
+    if not tension_tokens:
+        return 0
     hits = 0
-    for tag in tags:
-        tag_tokens = tokens(tag)
-        if tag_tokens & tension_tokens:
-            hits += len(tag_tokens & tension_tokens)
+    for tag in panelist["tags"]:
+        hits += 2 * len(tokens(tag) & tension_tokens)
+    body = panelist["lens"] + " " + " ".join(panelist["attributes"])
+    hits += len(tokens(body) & tension_tokens)
     return hits
 
 
-def select(panelists: list, tensions: list, size: int) -> list:
+def stable_salt(pid: str, tensions: list) -> str:
+    blob = pid + "\x00" + ",".join(sorted(tensions))
+    return hashlib.md5(blob.encode("utf-8")).hexdigest()
+
+
+def select(panelists: list, tensions: list, size: int,
+           excluded: set | None = None) -> list:
+    excluded = excluded or set()
+    scored = [(score(tensions, p), p) for p in panelists
+              if p["id"] not in excluded]
     ranked = sorted(
-        panelists,
-        key=lambda p: (-score(tensions, p["tags"]), p["id"]),
+        scored,
+        key=lambda item: (-item[0], stable_salt(item[1]["id"], tensions)),
     )
     room, used_families = [], set()
-    for candidate in ranked:
+    for _, candidate in ranked:
         if len(room) >= size:
             break
         if candidate["family"] in used_families:
@@ -48,6 +61,20 @@ def select(panelists: list, tensions: list, size: int) -> list:
         room.append(candidate)
         used_families.add(candidate["family"])
     return room
+
+
+def load_excluded(paths: list) -> set:
+    excluded = set()
+    for path in paths:
+        with open(path) as fh:
+            data = json.load(fh)
+        room = data.get("room", data if isinstance(data, list) else [])
+        for entry in room:
+            if isinstance(entry, dict) and "id" in entry:
+                excluded.add(entry["id"])
+            elif isinstance(entry, str):
+                excluded.add(entry)
+    return excluded
 
 
 def main(argv=None) -> int:
@@ -58,6 +85,8 @@ def main(argv=None) -> int:
     parser.add_argument("--db", default=os.environ.get("SKILLFLOW_DB"),
                         help="skillflow session DB (default: $SKILLFLOW_DB)")
     parser.add_argument("--out", default=None, help="write room JSON here")
+    parser.add_argument("--exclude", action="append", default=[],
+                        help="room.json whose members to exclude (repeatable)")
     args = parser.parse_args(argv)
 
     if not (MIN_SEATS <= args.size <= MAX_SEATS):
@@ -90,12 +119,17 @@ def main(argv=None) -> int:
     ]
 
     tensions = [t.strip() for t in args.tensions.split(",") if t.strip()]
-    room = select(panelists, tensions, args.size)
+    try:
+        excluded = load_excluded(args.exclude)
+    except (OSError, ValueError) as exc:
+        print(f"error: cannot load --exclude file: {exc}", file=sys.stderr)
+        return 2
+    room = select(panelists, tensions, args.size, excluded)
     result = {
         "tensions": tensions,
         "room": [
             {"name": p["name"], "id": p["id"], "family": p["family"],
-             "lens": p["lens"], "score": score(tensions, p["tags"])}
+             "lens": p["lens"], "score": score(tensions, p)}
             for p in room
         ],
     }
