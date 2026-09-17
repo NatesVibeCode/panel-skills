@@ -35,5 +35,5 @@ would still attack. A stranger reads it in under a minute.
 ## Runner
 
 Run on skillflow (see `../_shared/running-on-skillflow.md`): one node per
-round, one gate node between rounds. Wren's stoppage rule is literal — no
-next round until a person approves the record.
+round, one gate node between rounds. No next round until a person approves
+the record — the gates enforce the stoppage, Wren just asks for it.

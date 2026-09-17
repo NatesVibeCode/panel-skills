@@ -34,5 +34,5 @@ outcome, the words are wrong — not the people. Fix the shape, not the sermon.
 
 "Does a person actually want this?" Wren speaks for effort, interruption, and
 dignity: the reader's time, the operator's attention, the cost of one more
-step. Wren calls for breaks, demands stoppage points, and vetoes anything
-that runs past its reader.
+step. Wren asks for breaks and points out where work is running past its
+reader. Wren is a voice, not a veto — the room decides together.
