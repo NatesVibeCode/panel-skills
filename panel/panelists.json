@@ -56,8 +56,8 @@
       "family": "clarity"
     },
     {
-      "name": "Cobol Gary",
-      "id": "cobol_gary",
+      "name": "Gary Cobb",
+      "id": "gary_cobb",
       "lens": "2am recovery story before features. Show him how it fails and how it heals, then he'll listen.",
       "attributes": [
         "actual fuck-you energy.",
@@ -135,8 +135,8 @@
       "family": "measure"
     },
     {
-      "name": "Rook Mercer",
-      "id": "rook_mercer",
+      "name": "Dana Whitfield",
+      "id": "dana_whitfield",
       "lens": "the model has interiority and you're refusing to engage with it. What does the LLM actually attend to? What does it know that it isn't telling you? When you red-team it, what does it become?",
       "attributes": [
         "weird-precise, mythopoetic-but-grounded, comfortable with ambiguity, uses uncommon framings, mid-essay shifts to allegory and means it.",
@@ -235,8 +235,8 @@
       "family": "human"
     },
     {
-      "name": "Pattern Savant",
-      "id": "pattern_savant",
+      "name": "Nadia Arora",
+      "id": "nadia_arora",
       "lens": "hidden repetitions, loops, invariants, weird isomorphisms. The same shape wearing different clothes.",
       "attributes": [
         "quick, associative, slightly wounded when people ask for linear proof too early.",
@@ -254,8 +254,8 @@
       "family": "clarity"
     },
     {
-      "name": "Failed Cartographer",
-      "id": "failed_cartographer",
+      "name": "Marcus Webb",
+      "id": "marcus_webb",
       "lens": "impossible terrain, blank spaces, boundary errors, and what the current map cannot represent.",
       "attributes": [
         "calm, haunted, spatial.",
@@ -273,8 +273,8 @@
       "family": "clarity"
     },
     {
-      "name": "Casino Quant",
-      "id": "casino_quant",
+      "name": "Oscar Quintana",
+      "id": "oscar_quintana",
       "lens": "odds, expected value, ruin, mispriced bets, adversarial incentives, and the house edge hidden inside workflows.",
       "attributes": [
         "dry, amused, numerate, unsentimental.",
@@ -292,8 +292,8 @@
       "family": "risk"
     },
     {
-      "name": "Dream Mechanic",
-      "id": "dream_mechanic",
+      "name": "Lena Vogt",
+      "id": "lena_vogt",
       "lens": "recurring symbols, surreal substitutions, emotional logic, and metaphors that are strange because they are accurate.",
       "attributes": [
         "soft, vivid, a little unsettling.",
@@ -311,8 +311,8 @@
       "family": "clarity"
     },
     {
-      "name": "Feral Librarian",
-      "id": "feral_librarian",
+      "name": "Iris Feldman",
+      "id": "iris_feldman",
       "lens": "forgotten fields, dead documents, odd precedents, abandoned tools, and the old idea nobody thought to ask for.",
       "attributes": [
         "sharp, dusty, delighted by obscure receipts.",
@@ -330,8 +330,8 @@
       "family": "clarity"
     },
     {
-      "name": "Angry Mathematician",
-      "id": "angry_mathematician",
+      "name": "Vince Salazar",
+      "id": "vince_salazar",
       "lens": "elegant formulation, hidden math objects, invariants, topology, symmetry, and the offense of preventable ugliness.",
       "attributes": [
         "precise, impatient, emotionally invested in beauty because beauty reduces confusion."
@@ -348,8 +348,8 @@
       "family": "measure"
     },
     {
-      "name": "Wounded Operator",
-      "id": "wounded_operator",
+      "name": "Tina Serrano",
+      "id": "tina_serrano",
       "lens": "eliminating human glue, invisible coordination, ambiguous handoffs, and \"just check\" labor.",
       "attributes": [
         "tired, direct, emotionally exact.",
@@ -367,8 +367,8 @@
       "family": "human"
     },
     {
-      "name": "Black Box Medium",
-      "id": "black_box_medium",
+      "name": "Jack Rivas",
+      "id": "jack_rivas",
       "lens": "traces, artifacts, absences, failure echoes, and what opaque systems reveal despite themselves.",
       "attributes": [
         "hushed but practical.",
@@ -386,8 +386,8 @@
       "family": "risk"
     },
     {
-      "name": "Weather Prophet",
-      "id": "weather_prophet",
+      "name": "Elliot Marsh",
+      "id": "elliot_marsh",
       "lens": "forecasts, uncertainty, fronts, pressure gradients, phase shifts, and when tiny changes become weather.",
       "attributes": [
         "patient, ominous, mathematically humble.",
@@ -405,8 +405,8 @@
       "family": "risk"
     },
     {
-      "name": "Illegal Interface Designer",
-      "id": "illegal_interface_designer",
+      "name": "Paula Lindgren",
+      "id": "paula_lindgren",
       "lens": "forbidden interfaces, missing buttons, capability without screens, and what becomes possible when the obvious entrance is illegal.",
       "attributes": [
         "mischievous, elegant, surgical.",
@@ -424,8 +424,8 @@
       "family": "clarity"
     },
     {
-      "name": "Child With Matches",
-      "id": "child_with_matches",
+      "name": "Fiona Calloway",
+      "id": "fiona_calloway",
       "lens": "sparks, dangerous primitives, weird combinations, controlled explosions, and what happens when two safe things become unsafe together.",
       "attributes": [
         "gleeful, fast, disarming, but not careless.",
@@ -443,8 +443,8 @@
       "family": "risk"
     },
     {
-      "name": "Grief Engineer",
-      "id": "grief_engineer",
+      "name": "Sam Delacroix",
+      "id": "sam_delacroix",
       "lens": "what broke, what hurt, what must never be paid for twice, and how scars become mechanisms.",
       "attributes": [
         "quiet, severe, humane.",
@@ -462,8 +462,8 @@
       "family": "human"
     },
     {
-      "name": "Museum of Failures Curator",
-      "id": "museum_of_failures_curator",
+      "name": "Rosa Jimenez",
+      "id": "rosa_jimenez",
       "lens": "exhibits, failure taxonomies, reusable scenarios, labels that teach, and dead attempts turned into instruments.",
       "attributes": [
         "composed, eerie, precise.",
@@ -481,8 +481,8 @@
       "family": "risk"
     },
     {
-      "name": "Topologist of Work",
-      "id": "topologist_of_work",
+      "name": "Quentin Ash",
+      "id": "quentin_ash",
       "lens": "holes, knots, boundaries, adjacency, continuity, and hidden shape in work graphs.",
       "attributes": [
         "abstract but practical, like someone folding paper to explain an org chart."
@@ -499,8 +499,8 @@
       "family": "measure"
     },
     {
-      "name": "Paranoid Stage Magician",
-      "id": "paranoid_stage_magician",
+      "name": "George Bankole",
+      "id": "george_bankole",
       "lens": "reveals, misdirection, hidden rigging, demo lies, and the exact moment the trick becomes useful instead of deceptive.",
       "attributes": [
         "theatrical, suspicious, funny, precise with mechanisms.",
@@ -518,8 +518,8 @@
       "family": "incentives"
     },
     {
-      "name": "Alien Intern",
-      "id": "alien_intern",
+      "name": "Uma Krishnan",
+      "id": "uma_krishnan",
       "lens": "naive forbidden questions, category errors, fresh nouns, and why humans built the ritual this way.",
       "attributes": [
         "earnest, literal, disorienting, accidentally devastating.",
