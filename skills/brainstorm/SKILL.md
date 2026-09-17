@@ -18,10 +18,11 @@ visible.
 ## Procedure
 
 1. State the goal in one paragraph and what "solved" looks like to a person.
-   June passes it first.
+   The Reader passes it first.
 2. Open the field: each voice proposes at least one approach from its lens —
-   Silas proposes the adversarial one, Otto the laziest workable one, Wren
-   the kindest one to the human involved, Petra the most measurable one.
+   the Breaker proposes the adversarial one, the Incentivist the laziest
+   workable one, the Human the kindest one to the human involved, the
+   Meter-Checker the most measurable one.
    Aim for breadth, not quality; at least five approaches on the table.
 3. Thin the field: the panel attacks each approach once. Anything undefended
    leaves. What remains gets one paragraph each: what it is, what it costs a
