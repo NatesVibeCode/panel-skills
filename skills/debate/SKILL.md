@@ -5,38 +5,23 @@ description: Attack a claim from five sides in rounds until only what survives s
 
 # Debate
 
-**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/room.sh`.
+**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/run.sh`.
 
 Put one claim in the room and let the panel try to break it. What survives,
 in smaller and harder form, is the outcome.
 
-## When to use
+## Run
 
-- A decision matters and nobody has attacked it yet.
-- Two approaches collide and the collision needs a referee.
-- Someone says "this is obviously right" — that sentence is the trigger.
+```sh
+panel/run.sh debate "<claim>" [rounds] [session-dir]
+```
 
-## Procedure
-
-1. State the claim in one paragraph, plain words. It must be restatable by
-   a stranger in six seconds before the first round seats.
-2. Run rounds. Each round, the DAG forms the room: name the live tensions,
-   run the selector, and let the selected room collide over the claim (see
-   `../_shared/panel.md`) — no turn order, no checklist of voices.
-3. End each round with collisions: where the claim moved, what died, what is
-   still standing — plus the new tags the round raised. Write it down before
-   the next round.
-4. Stop when a round changes nothing, or after three rounds — whichever comes
-   first. More rounds polish; they rarely cut.
+The DAG runs the procedure: seed the panel, then per round select a room,
+collide over the claim, write the record, and gate on a person's approval.
+What survives, in smaller and harder form, is the outcome.
 
 ## Record
 
-Write a short record: the claim, the panel, one section per round with
-collisions, and the outcome — what survived, what died, and what the room
-would still attack. A stranger reads it in under a minute.
-
-## Runner
-
-Run on skillflow (see `../_shared/running-on-skillflow.md`): one node per
-round, one gate node between rounds. No next round until a person approves
-the record — the gates enforce the stoppage, the Human just asks for it.
+Each round writes `record-N.md`: where the claim moved, what died, what is
+still standing, and the new tensions for the next round. A stranger reads it
+in under a minute.

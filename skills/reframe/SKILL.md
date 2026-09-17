@@ -5,40 +5,25 @@ description: Restate the problem in rounds until the shape of the work changes. 
 
 # Reframe
 
-**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/room.sh`.
+**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/run.sh`.
 
 The work is stuck or swelling. Instead of pushing harder, restate the problem
 until a different shape of work appears — then check whether the new shape is
 smaller, kinder, or truer than the old one.
 
-## When to use
+## Run
 
-- Effort keeps growing and the goal keeps receding.
-- The plan answers a question nobody asked.
-- A debate or review exposed that the wrong thing is being built well.
+```sh
+panel/run.sh reframe "<current frame>" [rounds] [session-dir]
+```
 
-## Procedure
-
-1. Write the current frame in one paragraph: what we are building and why.
-   Then write what a person actually wants to be true. If those two differ,
-   the gap is the material.
-2. Run reframing passes. Each pass, the DAG forms the room from the live
-   tensions (see `../_shared/panel.md`) and the selected room offers new
-   frames from its own directions, restated in plain words.
-3. After each pass, compare frames honestly: smaller? kinder? truer? Keep at
-   most two. Kill the rest out loud, with reasons.
-4. Stop when a frame survives two consecutive passes unchanged, or after
-   three passes. Name the surviving frame and what it kills from the old plan.
+The DAG runs the passes: per round select a room, offer new frames, keep at
+most two, kill the rest out loud. A gate stops each round until a person
+approves the record.
 
 ## Record
 
-Write a short record: the old frame, each candidate frame in one paragraph,
-what was killed and why, the surviving frame and what changes because of it.
-A stranger reads it in under a minute and can explain the turn to someone
-else.
-
-## Runner
-
-Run on skillflow (see `../_shared/running-on-skillflow.md`): one node per
-pass, one gate between passes. A reframe that runs without a person reading
-each pass is just redecorating — the gates are mandatory here, not polite.
+Each pass writes `frames-N.md`: the candidates in one paragraph each, what
+was killed and why, and the new tensions. The final record names the
+surviving frame and what changes because of it. A stranger reads it in under
+a minute and can explain the turn to someone else.

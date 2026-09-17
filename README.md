@@ -14,7 +14,7 @@ are Markdown files an agent reads and follows.
 [skillflow](https://github.com/NatesVibeCode/skillflow) is required. Every
 skill runs on it: room selection, rounds, gates, and stoppage are all DAG
 nodes, not prose. Install it first, then run sessions with
-`panel/room.sh "tension1,tension2" <rounds> <session-dir>`.
+`panel/run.sh <skill> "<subject>" [rounds] [session-dir]`.
 
 ## Install
 
@@ -31,7 +31,7 @@ skills folder, or install directly if your harness supports it:
 muse skills install skills/debate
 ```
 
-`panel/` stays with the repo checkout — `room.sh` resolves its own location,
+`panel/` stays with the repo checkout — `run.sh` resolves its own location,
 so run it from anywhere.
 
 ## The skills
@@ -51,10 +51,10 @@ Room selection is mechanical, not prose: the 128 panelists live in a
 [panel/seed.py](panel/seed.py)),
 [panel/select_room.py](panel/select_room.py) matches
 them to the situation's tensions with enforced diversity (one per family),
-and [panel/room.sh](panel/room.sh) runs the whole session as a skillflow DAG:
+and [panel/run.sh](panel/run.sh) runs each skill as a skillflow DAG:
 
 ```sh
-panel/room.sh "risk,measurement" 2 ./session1
+panel/run.sh debate "ship it friday" 3 ./session1
 ```
 
 Tests: `cd panel && python -m unittest test_select`.

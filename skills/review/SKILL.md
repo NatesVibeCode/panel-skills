@@ -5,43 +5,25 @@ description: Read back intent, check what was built against it, and give a verdi
 
 # Review
 
-**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/room.sh`.
+**Requires:** [skillflow](https://github.com/NatesVibeCode/skillflow) — run via `panel/run.sh`.
 
 Work says it is done. The panel reads back what was asked, looks at what was
 built, and gives a verdict: holds, holds with gaps named, or fails. Soft
 passes are lies about ownership — a gap named is a gap ownable; a gap
 smoothed over is a debt with no owner.
 
-## When to use
+## Run
 
-- Something claims to be done and the claim matters.
-- A handoff is coming and the receiver should not inherit surprises.
-- "Green" appeared fast and nobody can say exactly what was checked.
+```sh
+panel/run.sh review "<work under review>" [session-dir]
+```
 
-## Procedure
-
-1. Read back intent in three layers: what was explicitly asked, what bar was
-   implied, what constraints were hard. Write them where the builder can see
-   them before evidence is discussed.
-2. Lay out the evidence: what was built or changed, what was checked, what
-   the checks showed. No adjectives — artifacts and observations only.
-3. The room collides intent with evidence: the DAG forms the room from the
-   tensions between the readback and the evidence (see
-   `../_shared/panel.md`), and the selected room hunts untested claims,
-   wrong meters, lazy paths through the checks, and what the remaining gaps
-   cost a person. No turn order — let the collisions happen.
-4. Give the verdict in one line — holds, holds with named gaps, or fails —
-   followed by the gaps with owners, or the reason for failure. No verdict
-   without evidence; no evidence without the intent readback first.
+The DAG runs two rounds: read back intent in three layers (explicit, implied,
+hard constraints), gate, then collide intent with evidence and give the
+verdict. A gate stops each round until a person approves the record.
 
 ## Record
 
-Write a short record: intent in three layers, evidence, the collision, the
-one-line verdict with named gaps and owners. A stranger reads it in under a
-minute and knows exactly what is done and what is not.
-
-## Runner
-
-Run on skillflow (see `../_shared/running-on-skillflow.md`): one node for the
-intent readback, one gate, one node for evidence and verdict. The builder does
-not speak during the readback round — that separation is the whole method.
+`intent.md` holds the three-layer readback; `verdict.md` holds the one-line
+verdict with named gaps and owners. A stranger reads them in under a minute
+and knows exactly what is done and what is not.

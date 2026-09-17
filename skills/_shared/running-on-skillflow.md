@@ -1,32 +1,30 @@
 # Running on skillflow
 
-The four skills run on [skillflow](https://github.com/NatesVibeCode/skillflow),
-and the graph does the enforcing — not prose. Room selection, diversity, and
-stoppage are all nodes and gates: the selector picks the room mechanically,
-and a gate between rounds stops the run until a person has read the record
-and approved the next round.
-
-## The room-forming graph
-
-One command builds and runs the whole session:
+Each skill IS a skillflow graph. The procedure lives in the DAG — seed the
+panel, select rooms, collide, gate — not in prose. One command builds and
+runs the whole session:
 
 ```sh
-panel/room.sh "risk,measurement,human-cost" 2 ./session1
+panel/run.sh debate "<claim>" [rounds] [session-dir]
+panel/run.sh brainstorm "<goal>" [session-dir]
+panel/run.sh reframe "<current frame>" [rounds] [session-dir]
+panel/run.sh review "<work under review>" [session-dir]
 ```
 
-That builds the graph — seed-panel → tensions → select → gate → round, per
-round — and runs it. The first node seeds the `panelists` table in the
-session DB from `panel/panelists.json`; `panel/select_room.py` then seats
-each room from that table (semantic match, diversity enforced: at most one
-per family, three to five seats). Each gate stops until a person has
-collided, written the round record, and updated the tensions for the next
-round's selection. New tensions re-form the room every round.
+## Graph shape
+
+- `seed-panel` loads the `panelists` table into the session DB.
+- Per round: `select-N` seats the room from the tensions file
+  (`panel/select_room.py`: semantic match, diversity enforced, previous
+  rooms excluded), then `round-N` gates.
+- Each gate stops until a person has done the round's work, written its
+  record, and updated the tensions for the next round's selection.
 
 ## Rules
 
-- The selector seats the room. Nobody hand-picks panelists in prose.
-- One gate per boundary. No round starts until the previous record is read.
+- The selector seats every room. Nobody hand-picks panelists in prose.
+- One gate per round. No round starts until the previous record is read.
 - A failed gate is a verdict, not an error: read the record, fix the work,
   run again.
-- Every record and every `room.json` lands on disk before its gate, so
+- Every record, room file, and the DB land in the session directory, so
   `skillflow status` always shows what the person approved and what stopped.
