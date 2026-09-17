@@ -1,21 +1,20 @@
 """Select a panel room by semantic tag match with enforced diversity.
 
-Reads panel/panelists.json, ranks panelists by token-overlap between the
-situation's tensions and each panelist's tags, then enforces diversity:
-at most one panelist per family, three to five seats. Score proposes;
-diversity disposes.
+Reads the panelists table from the skillflow session DB (SKILLFLOW_DB),
+ranks panelists by token-overlap between the situation's tensions and each
+panelist's tags, then enforces diversity: at most one panelist per family,
+three to five seats. Score proposes; diversity disposes.
 
 Usage:
-    python3 select_room.py --tensions risk,measurement,human-cost [--size 4]
-    python3 select_room.py --tensions "risk" --out room.json
+    SKILLFLOW_DB=./session1/skillflow.db python3 select_room.py --tensions risk,measurement
 """
 
 import argparse
 import json
 import os
+import sqlite3
 import sys
 
-HERE = os.path.dirname(os.path.abspath(__file__))
 MIN_SEATS, MAX_SEATS = 3, 5
 
 
@@ -56,19 +55,39 @@ def main(argv=None) -> int:
     parser.add_argument("--tensions", default="",
                         help="comma-separated situation tensions")
     parser.add_argument("--size", type=int, default=4)
-    parser.add_argument("--panelists", default=os.path.join(HERE, "panelists.json"))
+    parser.add_argument("--db", default=os.environ.get("SKILLFLOW_DB"),
+                        help="skillflow session DB (default: $SKILLFLOW_DB)")
     parser.add_argument("--out", default=None, help="write room JSON here")
     args = parser.parse_args(argv)
 
     if not (MIN_SEATS <= args.size <= MAX_SEATS):
         print(f"error: --size must be {MIN_SEATS}-{MAX_SEATS}", file=sys.stderr)
         return 2
-    try:
-        with open(args.panelists) as fh:
-            panelists = json.load(fh)["panelists"]
-    except (OSError, ValueError, KeyError) as exc:
-        print(f"error: cannot load panelists: {exc}", file=sys.stderr)
+    if not args.db:
+        print("error: no session DB; set SKILLFLOW_DB or pass --db",
+              file=sys.stderr)
         return 2
+    try:
+        conn = sqlite3.connect(args.db)
+        conn.row_factory = sqlite3.Row
+        rows = conn.execute(
+            "SELECT id, name, lens, attributes, family, tags FROM panelists"
+        ).fetchall()
+        conn.close()
+    except sqlite3.Error as exc:
+        print(f"error: cannot load panelists (run seed.py first?): {exc}",
+              file=sys.stderr)
+        return 2
+    if not rows:
+        print("error: panelists table is empty (run seed.py first?)",
+              file=sys.stderr)
+        return 2
+    panelists = [
+        {"id": r["id"], "name": r["name"], "lens": r["lens"],
+         "attributes": json.loads(r["attributes"]), "family": r["family"],
+         "tags": json.loads(r["tags"])}
+        for r in rows
+    ]
 
     tensions = [t.strip() for t in args.tensions.split(",") if t.strip()]
     room = select(panelists, tensions, args.size)

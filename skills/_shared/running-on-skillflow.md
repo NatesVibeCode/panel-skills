@@ -14,12 +14,13 @@ One command builds and runs the whole session:
 panel/room.sh "risk,measurement,human-cost" 2 ./session1
 ```
 
-That builds the graph — tensions → select → gate → round, per round — and
-runs it. `panel/select_room.py` seats each room mechanically (semantic match,
-diversity enforced: at most one per family, three to five seats). Each gate
-stops until a person has collided, written the round record, and updated the
-tensions for the next round's selection. New tensions re-form the room every
-round.
+That builds the graph — seed-panel → tensions → select → gate → round, per
+round — and runs it. The first node seeds the `panelists` table in the
+session DB from `panel/panelists.json`; `panel/select_room.py` then seats
+each room from that table (semantic match, diversity enforced: at most one
+per family, three to five seats). Each gate stops until a person has
+collided, written the round record, and updated the tensions for the next
+round's selection. New tensions re-form the room every round.
 
 ## Rules
 

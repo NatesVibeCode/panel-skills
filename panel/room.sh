@@ -35,7 +35,9 @@ cd "$SESSION"
 export SKILLFLOW_DB="$SESSION/skillflow.db"
 
 "${SF[@]}" init >/dev/null
+"${SF[@]}" add-node seed-panel --cmd "SKILLFLOW_DB='$SESSION/skillflow.db' python3 '$PANEL_DIR/seed.py'" >/dev/null
 "${SF[@]}" add-node tensions --cmd "echo '$TENSIONS' > tensions.txt" >/dev/null
+"${SF[@]}" add-edge seed-panel tensions >/dev/null
 PREV="tensions"
 i=1
 while [ "$i" -le "$ROUNDS" ]; do

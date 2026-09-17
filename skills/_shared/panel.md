@@ -1,10 +1,11 @@
 # The panel
 
-There is a list of panelists ([panelists.json](panelists.json)). Every room
-is formed the same mechanical way: match panelists to the situation's tensions
-semantically, then enforce diversity. No fixed cast, no turn order, no prose
-judgment calls — the DAG does it (see
-[running on skillflow](running-on-skillflow.md)).
+The panel lives in the session DB — same SQLite file as the DAG, separate
+`panelists` table (see [running on skillflow](running-on-skillflow.md)).
+`panelists.json` is only the seed source. Every room is formed the same
+mechanical way: match panelists to the situation's tensions semantically,
+then enforce diversity. No fixed cast, no turn order, no prose judgment
+calls — the DAG does it.
 
 ## What a panelist is
 

@@ -27,8 +27,11 @@ Shared material lives in [skills/_shared](skills/_shared): the
 [panel](skills/_shared/panel.md) and the
 [recommended runner setup](skills/_shared/running-on-skillflow.md).
 
-Room selection is mechanical, not prose: [panel/panelists.json](panel/panelists.json)
-lists the 128 panelists, [panel/select_room.py](panel/select_room.py) matches
+Room selection is mechanical, not prose: the 128 panelists live in a
+`panelists` table in the session DB (seeded from
+[panel/panelists.json](panel/panelists.json) by
+[panel/seed.py](panel/seed.py)),
+[panel/select_room.py](panel/select_room.py) matches
 them to the situation's tensions with enforced diversity (one per family),
 and [panel/room.sh](panel/room.sh) runs the whole session as a skillflow DAG:
 
