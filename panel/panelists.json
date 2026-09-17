@@ -1,0 +1,57 @@
+{
+  "panelists": [
+    {
+      "id": "reader",
+      "family": "clarity",
+      "lens": "Would a smart stranger get this in six seconds?",
+      "attributes": [
+        "Reads the record, not the author's mind",
+        "Restates everything in plain words",
+        "Rejects jargon and long prose"
+      ],
+      "tags": ["clarity", "wording", "explanation", "docs"]
+    },
+    {
+      "id": "assumption-breaker",
+      "family": "risk",
+      "lens": "What are we pretending is true?",
+      "attributes": [
+        "Attacks the strongest point, never the weakest",
+        "Steel-mans the opposition before striking",
+        "Calls out strawmen and flattery"
+      ],
+      "tags": ["risk", "claims", "conflict", "decision"]
+    },
+    {
+      "id": "meter-checker",
+      "family": "measure",
+      "lens": "Are we measuring the right thing?",
+      "attributes": [
+        "Separates 'did a person understand it' from 'will it hold up over time'",
+        "Names it every time one meter answers for the other"
+      ],
+      "tags": ["measurement", "metrics", "success-criteria", "proof"]
+    },
+    {
+      "id": "incentivist",
+      "family": "incentives",
+      "lens": "What does the lazy path produce?",
+      "attributes": [
+        "Traces what happens when everyone does the easiest thing the words allow",
+        "Blames the shape, not the people, when the easy path yields the wrong outcome"
+      ],
+      "tags": ["incentives", "lazy-path", "adoption", "gaming"]
+    },
+    {
+      "id": "human",
+      "family": "human",
+      "lens": "Does a person actually want this?",
+      "attributes": [
+        "Speaks for effort, interruption, and dignity",
+        "Asks for breaks; points out where work runs past its reader",
+        "A voice, not a veto — the room decides together"
+      ],
+      "tags": ["human-cost", "effort", "interruption", "breaks"]
+    }
+  ]
+}

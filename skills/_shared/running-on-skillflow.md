@@ -1,32 +1,35 @@
 # Running on skillflow
 
-The four skills are written to be run, round by round, on
-[skillflow](https://github.com/NatesVibeCode/skillflow). This is the
-recommended setup because it enforces what the skills need most: breaks and
-stoppage. A run cannot proceed past a gate node until a person has read the
-round's record and said so.
+The four skills run on [skillflow](https://github.com/NatesVibeCode/skillflow),
+and the graph does the enforcing — not prose. Room selection, diversity, and
+stoppage are all nodes and gates: the selector picks the room mechanically,
+and a gate between rounds stops the run until a person has read the record
+and approved the next round.
 
-## The pattern
-
-Map each round to a node. Put a gate node between rounds. The gate's command
-asks a person for approval and exits nonzero on anything but yes — skillflow
-stops the run there, and nothing downstream executes.
+## The room-forming graph
 
 ```sh
 skillflow init
-skillflow add-node round-1 --cmd "produce round 1 record"
-skillflow add-node gate-1 --cmd 'read -p "Approve round 1? [y/N] " a; [ "$a" = "y" ]'
-skillflow add-node round-2 --cmd "produce round 2 record"
-skillflow add-edge round-1 gate-1
-skillflow add-edge gate-1 round-2
+skillflow add-node tensions --cmd "echo 'risk,measurement,human-cost' > tensions.txt"
+skillflow add-node select-room --cmd "python3 panel/select_room.py --tensions $(cat tensions.txt) --out room.json"
+skillflow add-node gate-1 --cmd 'read -p "Approve room? [y/N] " a; [ "$a" = "y" ]'
+skillflow add-node round-1 --cmd "collide over the question with room.json"
+skillflow add-edge tensions select-room
+skillflow add-edge select-room gate-1
+skillflow add-edge gate-1 round-1
 skillflow run
 ```
 
+`panel/select_room.py` matches panelists to the tensions semantically and enforces
+diversity (at most one per family, three to five seats). New tensions from a
+round re-run the selector and re-form the room — add another
+select → gate → round chain per round.
+
 ## Rules
 
-- One round per node. Never bundle two rounds into one command.
+- The selector seats the room. Nobody hand-picks panelists in prose.
 - One gate per boundary. No round starts until the previous record is read.
 - A failed gate is a verdict, not an error: read the record, fix the work,
   run again.
-- Every record lands on disk before its gate, so `skillflow status` always
-  shows what the person approved and what stopped.
+- Every record and every `room.json` lands on disk before its gate, so
+  `skillflow status` always shows what the person approved and what stopped.

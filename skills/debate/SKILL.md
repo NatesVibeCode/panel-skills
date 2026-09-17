@@ -18,9 +18,9 @@ in smaller and harder form, is the outcome.
 
 1. State the claim in one paragraph, plain words. It must be restatable by
    a stranger in six seconds before the first round seats.
-2. Run rounds. Each round, harvest tags from the conversation and seat the
-   panelists those tags summon (see `../_shared/panel.md`). Let them collide
-   over the claim — no turn order, no checklist of voices.
+2. Run rounds. Each round, the DAG forms the room: name the live tensions,
+   run the selector, and let the selected room collide over the claim (see
+   `../_shared/panel.md`) — no turn order, no checklist of voices.
 3. End each round with collisions: where the claim moved, what died, what is
    still standing — plus the new tags the round raised. Write it down before
    the next round.

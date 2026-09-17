@@ -1,9 +1,9 @@
 # Panel skills
 
 Four small skills for thinking with a room instead of alone: **debate**,
-**brainstorm**, **reframe**, **review**. Each one draws from the same roster
-of lenses, seats each round by the conversation's tags, and writes a short
-plain-language record.
+**brainstorm**, **reframe**, **review**. Each one seats its room from the
+panelist list by semantic match with enforced diversity, runs in rounds, and
+writes a short plain-language record.
 
 They are written for people first. Every record must be readable by a smart
 stranger in under a minute. No servers, no services, no accounts — the skills
@@ -19,6 +19,11 @@ are Markdown files an agent reads and follows.
 Shared material lives in [skills/_shared](skills/_shared): the
 [panel](skills/_shared/panel.md) and the
 [recommended runner setup](skills/_shared/running-on-skillflow.md).
+
+Room selection is mechanical, not prose: [panel/panelists.json](panel/panelists.json)
+lists the panelists and [panel/select_room.py](panel/select_room.py) matches
+them to the situation's tensions with enforced diversity (one per family).
+Tests: `cd panel && python -m unittest test_select`.
 
 ## Recommended runner: skillflow
 
