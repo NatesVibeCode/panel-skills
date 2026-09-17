@@ -1,8 +1,9 @@
 # Panel skills
 
 Four small skills for thinking with a room instead of alone: **debate**,
-**brainstorm**, **reframe**, **review**. Each one convenes the same panel of
-five human lenses, runs in rounds, and writes a short plain-language record.
+**brainstorm**, **reframe**, **review**. Each one draws from the same roster
+of lenses, seats each round by the conversation's tags, and writes a short
+plain-language record.
 
 They are written for people first. Every record must be readable by a smart
 stranger in under a minute. No servers, no services, no accounts — the skills

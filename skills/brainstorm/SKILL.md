@@ -18,15 +18,16 @@ visible.
 ## Procedure
 
 1. State the goal in one paragraph and what "solved" looks like to a person.
-   The Reader passes it first.
-2. Open the field: each voice proposes at least one approach from its lens —
-   the Breaker proposes the adversarial one, the Incentivist the laziest
-   workable one, the Human the kindest one to the human involved, the
-   Meter-Checker the most measurable one.
-   Aim for breadth, not quality; at least five approaches on the table.
-3. Thin the field: the panel attacks each approach once. Anything undefended
-   leaves. What remains gets one paragraph each: what it is, what it costs a
-   person, how its success would show.
+   It must pass the six-second stranger test first.
+2. Open the field: seat panelists by the goal's tags (see
+   `../_shared/panel.md`) and let each seated lens propose from its own
+   direction — adversarial, laziest workable, kindest to the human involved,
+   most measurable. Aim for breadth, not quality; at least five approaches
+   on the table.
+3. Thin the field: new tags from the proposals seat the next round, and the
+   room attacks each approach. Anything undefended leaves. What remains gets
+   one paragraph each: what it is, what it costs a person, how its success
+   would show.
 4. Stop with a visible field, not a winner. Choosing is a later skill's job.
 
 ## Record

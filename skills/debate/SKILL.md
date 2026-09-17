@@ -16,14 +16,14 @@ in smaller and harder form, is the outcome.
 
 ## Procedure
 
-1. State the claim in one paragraph, plain words. The Reader must pass it
-   before the first round: restatable by a stranger in six seconds.
-2. Run rounds. Each round, every voice speaks: the Reader on clarity, the
-   Breaker attacking the strongest point, the Meter-Checker checking the
-   meters, the Incentivist tracing the lazy path, the Human counting the
-   human cost.
+1. State the claim in one paragraph, plain words. It must be restatable by
+   a stranger in six seconds before the first round seats.
+2. Run rounds. Each round, harvest tags from the conversation and seat the
+   panelists those tags summon (see `../_shared/panel.md`). Let them collide
+   over the claim — no turn order, no checklist of voices.
 3. End each round with collisions: where the claim moved, what died, what is
-   still standing. Write it down before the next round.
+   still standing — plus the new tags the round raised. Write it down before
+   the next round.
 4. Stop when a round changes nothing, or after three rounds — whichever comes
    first. More rounds polish; they rarely cut.
 

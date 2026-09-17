@@ -20,11 +20,11 @@ smaller, kinder, or truer than the old one.
 1. Write the current frame in one paragraph: what we are building and why.
    Then write what a person actually wants to be true. If those two differ,
    the gap is the material.
-2. Run reframing passes. Each pass, the panel offers a new frame: the
-   Breaker inverts the assumption, the Meter-Checker changes what gets
-   measured, the Incentivist asks what the laziest true solution is, the
-   Human asks what the person would accept with half the machinery, the
-   Reader restates it in plain words.
+2. Run reframing passes. Each pass, the live tags seat the room (see
+   `../_shared/panel.md`) and the seated lenses offer new frames from their
+   own directions — inverted assumptions, changed meters, laziest true
+   solutions, what a person would accept with half the machinery — restated
+   in plain words.
 3. After each pass, compare frames honestly: smaller? kinder? truer? Keep at
    most two. Kill the rest out loud, with reasons.
 4. Stop when a frame survives two consecutive passes unchanged, or after

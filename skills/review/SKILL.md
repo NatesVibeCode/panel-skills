@@ -23,11 +23,11 @@ smoothed over is a debt with no owner.
    them before evidence is discussed.
 2. Lay out the evidence: what was built or changed, what was checked, what
    the checks showed. No adjectives — artifacts and observations only.
-3. The room collides intent with evidence, voice by voice: the Reader checks
-   the record reads plain, the Breaker hunts the untested claim, the
-   Meter-Checker asks whether the checks measured the right meter, the
-   Incentivist asks what the lazy path through the checks allows, the Human
-   asks what the remaining gaps cost a person.
+3. The room collides intent with evidence: tags from the readback and the
+   evidence seat the panelists (see `../_shared/panel.md`), and the seated
+   room hunts untested claims, wrong meters, lazy paths through the checks,
+   and what the remaining gaps cost a person. No turn order — let the
+   collisions happen.
 4. Give the verdict in one line — holds, holds with named gaps, or fails —
    followed by the gaps with owners, or the reason for failure. No verdict
    without evidence; no evidence without the intent readback first.
